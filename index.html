@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Koolitused Saaremaal – AI ja kodulehed | Kungla Koolitused</title>
+  <meta name="description" content="Praktilised AI, kodulehe ja disaini koolitused Kuressaares väikestes gruppides. Paljud on riigi toel osalejale tasuta. Vaata järgmist töötuba.">
+  <link rel="canonical" href="https://kunglakoolitused.ee/">
+  <meta name="theme-color" content="#17335A">
+
+  <!-- Jagamise eelvaade (Facebook, LinkedIn jt) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="et_EE">
+  <meta property="og:site_name" content="Kungla Koolitused">
+  <meta property="og:title" content="Koolitused Saaremaal: proovi tehisaru omal käel">
+  <meta property="og:description" content="Praktilised AI, kodulehe ja disaini koolitused Kuressaares väikestes gruppides. Paljud on riigi toel osalejale tasuta.">
+  <meta property="og:url" content="https://kunglakoolitused.ee/">
+  <meta property="og:image" content="https://kunglakoolitused.ee/images/Koolitus_TI_1.webp">
+
+  <link rel="icon" href="kungla-koolitused-logo.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Schema.org: ainult tõesed andmed. Lisa registrikood/juriidiline nimi, kui need on otsustatud. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://kunglakoolitused.ee/#ettevote",
+    "name": "Kungla Koolitused",
+    "description": "Täiskasvanute digioskuste koolitused Saaremaal: tehisaru kasutamine, veebilehtede tegemine ja disain.",
+    "url": "https://kunglakoolitused.ee/",
+    "logo": "https://kunglakoolitused.ee/kungla-koolitused-logo.svg",
+    "image": "https://kunglakoolitused.ee/images/Koolitus_TI_1.webp",
+    "telephone": "+372 5373 5449",
+    "email": "info@kunglakoolitused.ee",
+    "foundingDate": "2020",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kungla 6-1",
+      "addressLocality": "Kuressaare",
+      "postalCode": "93814",
+      "addressRegion": "Saare maakond",
+      "addressCountry": "EE"
+    },
+    "areaServed": { "@type": "AdministrativeArea", "name": "Saaremaa" },
+    "founder": { "@type": "Person", "name": "Kristjan Kesküla", "jobTitle": "Koolitaja, graafiline disainer ja veebiarendaja" },
+    "knowsAbout": ["Tehisaru kasutamine", "ChatGPT", "Claude", "Gemini", "WordPress", "Veebilehtede tegemine", "Graafiline disain"],
+    "knowsLanguage": "et"
+  }
+  </script>
+
+  <style>
+    /* ── Disainisüsteemi muutujad (kungla-tokens.css) ─────────── */
+    :root {
+      --color-primary: #17335A;
+      --color-primary-dark: #0F2441;
+      --color-accent: #A9481F;
+      --color-accent-light: #F7E2D4;
+      --color-accent-on-dark: #F2BD8D;
+      --color-secondary: #4A6A4C;
+      --color-secondary-light: #E0E8D8;
+      --color-bg: #FAF6EF;
+      --color-bg-alt: #F1E8DA;
+      --color-surface: #FFFDF9;
+      --color-border: #E4D9C8;
+      --color-border-strong: #8A7B69;
+      --color-text: #2A2621;
+      --color-text-muted: #625A51;
+      --color-text-on-dark: #FAF6EF;
+      --color-error: #9B2C24;
+
+      --font-heading: "Instrument Serif", Georgia, "Times New Roman", serif;
+      --font-body: Figtree, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --text-h1: clamp(2.75rem, 1.6rem + 4.2vw, 4.5rem);
+      --text-h2: clamp(2rem, 1.45rem + 2.2vw, 3rem);
+      --text-h3: 1.375rem;
+      --text-lead: 1.25rem;
+      --text-body: 1.125rem;
+      --text-small: 0.9375rem;
+      --text-button: 1.0625rem;
+
+      --leading-h1: 1.05;
+      --leading-h2: 1.1;
+      --leading-h3: 1.3;
+      --leading-body: 1.6;
+      --leading-small: 1.5;
+      --weight-regular: 400;
+      --weight-semibold: 600;
+
+      --space-2xs: 4px;
+      --space-xs: 8px;
+      --space-s: 16px;
+      --space-m: 24px;
+      --space-l: 40px;
+      --space-xl: 64px;
+      --space-2xl: 96px;
+
+      --radius-s: 8px;
+      --radius-m: 12px;
+      --radius-l: 20px;
+      --radius-pill: 999px;
+      --shadow-card: 0 1px 2px rgba(42, 38, 33, 0.06), 0 8px 24px rgba(42, 38, 33, 0.08);
+      --shadow-card-hover: 0 2px 4px rgba(42, 38, 33, 0.08), 0 16px 32px rgba(42, 38, 33, 0.12);
+
+      --container: 1200px;
+      --measure: 65ch;
+      --control-height: 52px;
+      --header-height: 80px;
+      --focus-ring-width: 3px;
+      --focus-ring-offset: 2px;
+    }
+
+    /* ── Alus ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + var(--space-s)); -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--color-bg);
+      color: var(--color-text);
+      font: var(--weight-regular) var(--text-body)/var(--leading-body) var(--font-body);
+      padding-bottom: 88px; /* ruum kleepuvale nupule mobiilis */
+    }
+    @media (min-width: 900px) { body { padding-bottom: 0; } }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--color-primary); text-underline-offset: 3px; }
+    a:hover { color: var(--color-primary-dark); }
+    :focus-visible { outline: var(--focus-ring-width) solid var(--color-accent); outline-offset: var(--focus-ring-offset); border-radius: 4px; }
+
+    h1, h2 { font-family: var(--font-heading); font-weight: 400; color: var(--color-primary); margin: 0; }
+    h1 { font-size: var(--text-h1); line-height: var(--leading-h1); letter-spacing: -0.01em; }
+    h2 { font-size: var(--text-h2); line-height: var(--leading-h2); }
+    h1 em, h2 em { font-style: italic; color: var(--color-accent); }
+    h3 { font-size: var(--text-h3); line-height: var(--leading-h3); font-weight: var(--weight-semibold); color: var(--color-primary); margin: 0; }
+    p { margin: 0 0 var(--space-s); max-width: var(--measure); }
+    p:last-child { margin-bottom: 0; }
+
+    .container { width: 100%; max-width: var(--container); margin: 0 auto; padding: 0 var(--space-m); }
+    .section { padding: var(--space-xl) 0; }
+    .section--alt { background: var(--color-bg-alt); }
+    @media (min-width: 900px) { .section { padding: var(--space-2xl) 0; } }
+
+    .eyebrow { display: block; font-size: var(--text-small); line-height: var(--leading-small); font-weight: var(--weight-semibold); color: var(--color-accent); margin-bottom: var(--space-xs); }
+    .section-head { margin-bottom: var(--space-l); }
+    .section-head p { margin-top: var(--space-s); }
+    .lead { font-size: var(--text-lead); line-height: 1.55; }
+    .muted { color: var(--color-text-muted); }
+    .small { font-size: var(--text-small); line-height: var(--leading-small); }
+
+    .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .skip-link { position: absolute; left: var(--space-s); top: -100px; background: var(--color-primary); color: var(--color-text-on-dark); padding: var(--space-xs) var(--space-s); border-radius: var(--radius-m); z-index: 100; }
+    .skip-link:focus { top: var(--space-s); color: var(--color-text-on-dark); }
+
+    /* ── Nupud ────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs);
+      min-height: var(--control-height); padding: 0 var(--space-m);
+      border-radius: var(--radius-pill); border: 2px solid transparent;
+      font: var(--weight-semibold) var(--text-button)/1.2 var(--font-body);
+      text-decoration: none; cursor: pointer; transition: background-color .15s, color .15s, border-color .15s;
+    }
+    .btn--primary { background: var(--color-primary); color: var(--color-text-on-dark); }
+    .btn--primary:hover { background: var(--color-primary-dark); color: var(--color-text-on-dark); }
+    .btn--secondary { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+    .btn--secondary:hover { background: var(--color-primary); color: var(--color-text-on-dark); }
+    .btn--on-dark { background: var(--color-accent-on-dark); color: var(--color-primary-dark); }
+    .btn--on-dark:hover { background: var(--color-bg); color: var(--color-primary-dark); }
+    .btn--small { min-height: 44px; padding: 0 var(--space-s); font-size: var(--text-small); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-s); margin-top: var(--space-m); }
+    .on-dark :focus-visible { outline-color: var(--color-accent-on-dark); }
+
+    /* ── Päis ─────────────────────────────────────────────────── */
+    .site-header { position: sticky; top: 0; z-index: 50; background: var(--color-bg); border-bottom: 1px solid var(--color-border); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-m); min-height: var(--header-height); }
+    .logo { display: inline-flex; flex-shrink: 0; }
+    .logo img { height: 44px; width: auto; }
+    .nav-toggle {
+      display: inline-flex; align-items: center; gap: var(--space-xs);
+      min-height: 44px; padding: 0 var(--space-s);
+      background: transparent; color: var(--color-primary);
+      border: 2px solid var(--color-primary); border-radius: var(--radius-pill);
+      font: var(--weight-semibold) var(--text-small)/1 var(--font-body); cursor: pointer;
+    }
+    .nav-toggle svg { width: 20px; height: 20px; }
+    .site-nav { display: none; }
+    .site-nav.is-open {
+      display: block; position: absolute; left: 0; right: 0; top: 100%;
+      background: var(--color-bg); border-bottom: 1px solid var(--color-border);
+      padding: var(--space-s) var(--space-m) var(--space-m);
+    }
+    .site-nav ul { list-style: none; margin: 0; padding: 0; }
+    .site-nav li a { display: block; padding: 12px 0; text-decoration: none; font-weight: var(--weight-semibold); color: var(--color-text); border-bottom: 1px solid var(--color-border); }
+    .site-nav li a:hover { color: var(--color-accent); }
+    .header-cta { display: none; }
+
+    @media (min-width: 900px) {
+      .nav-toggle { display: none; }
+      .site-nav, .site-nav.is-open { display: block; position: static; padding: 0; border: 0; background: none; }
+      .site-nav ul { display: flex; gap: var(--space-m); }
+      .site-nav li a { padding: var(--space-xs) 0; border: 0; font-size: var(--text-small); }
+      .header-cta { display: inline-flex; }
+    }
+
+    /* ── Avaplokk ─────────────────────────────────────────────── */
+    .hero { padding: var(--space-l) 0 var(--space-xl); }
+    .hero-grid { display: grid; gap: var(--space-l); align-items: center; }
+    .hero .lead { margin-top: var(--space-m); }
+    .hero-facts { list-style: none; margin: var(--space-l) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-xs) var(--space-m); }
+    .hero-facts li { display: inline-flex; align-items: center; gap: var(--space-xs); font-size: var(--text-small); font-weight: var(--weight-semibold); color: var(--color-text-muted); }
+    .hero-facts svg { width: 20px; height: 20px; color: var(--color-secondary); flex-shrink: 0; }
+    .hero-media { position: relative; }
+    .hero-media img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-l); }
+    .motif { position: absolute; width: 112px; height: 112px; right: -12px; bottom: -28px; color: var(--color-primary); }
+    @media (min-width: 900px) {
+      .hero { padding: var(--space-xl) 0 var(--space-2xl); }
+      .hero-grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-xl); }
+      .hero-media img { aspect-ratio: 3 / 2; }
+      .motif { width: 140px; height: 140px; right: -28px; bottom: -40px; }
+    }
+
+    /* ── Järgmine töötuba (tume plokk) ────────────────────────── */
+    .next { background: var(--color-primary); color: var(--color-text-on-dark); border-radius: var(--radius-l); padding: var(--space-l) var(--space-m); display: grid; gap: var(--space-m); }
+    .next h2 { color: var(--color-text-on-dark); }
+    .next h2 em { color: var(--color-accent-on-dark); }
+    .next .eyebrow { color: var(--color-accent-on-dark); }
+    .next a:not(.btn) { color: var(--color-text-on-dark); }
+    .next dl { margin: var(--space-m) 0 0; display: grid; gap: var(--space-xs); }
+    .next dl div { display: flex; gap: var(--space-xs); flex-wrap: wrap; }
+    .next dt { font-weight: var(--weight-semibold); }
+    .next dt::after { content: ":"; }
+    .next dd { margin: 0; }
+    @media (min-width: 900px) { .next { grid-template-columns: 1.4fr 1fr; align-items: end; padding: var(--space-xl); } .next .btn-row { justify-content: flex-end; } }
+
+    /* ── Kaardid ──────────────────────────────────────────────── */
+    .cards { display: grid; gap: var(--space-m); }
+    @media (min-width: 640px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1100px) { .cards { grid-template-columns: repeat(4, 1fr); } }
+    .card {
+      position: relative; display: flex; flex-direction: column; gap: var(--space-s);
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-l);
+      padding: var(--space-m); box-shadow: var(--shadow-card); transition: box-shadow .2s, transform .2s;
+    }
+    .card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+    .card:focus-within { outline: var(--focus-ring-width) solid var(--color-accent); outline-offset: var(--focus-ring-offset); }
+    .card .icon { width: 32px; height: 32px; color: var(--color-accent); }
+    .card p { font-size: var(--text-small); line-height: var(--leading-small); color: var(--color-text-muted); }
+    .card-meta { font-size: var(--text-small); color: var(--color-text-muted); margin: 0; }
+    .card-link { margin-top: auto; font-weight: var(--weight-semibold); text-decoration: none; }
+    .card-link::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-l); }
+    .card-link:focus-visible { outline: none; }
+    .tag { align-self: flex-start; display: inline-block; padding: 4px 12px; border-radius: var(--radius-pill); font-size: var(--text-small); font-weight: var(--weight-semibold); line-height: 1.4; }
+    .tag--free { background: var(--color-secondary-light); color: var(--color-secondary); }
+    .tag--quote { background: var(--color-accent-light); color: var(--color-accent); }
+
+    .topics { list-style: none; padding: 0; margin: var(--space-l) 0 0; display: grid; gap: var(--space-s); }
+    .topics li { display: flex; gap: var(--space-s); align-items: flex-start; }
+    .topics svg { width: 24px; height: 24px; color: var(--color-accent); flex-shrink: 0; margin-top: 3px; }
+    @media (min-width: 900px) { .topics { grid-template-columns: repeat(3, 1fr); gap: var(--space-m); } }
+
+    /* ── Meie lugu ────────────────────────────────────────────── */
+    .story-grid { display: grid; gap: var(--space-l); align-items: start; }
+    .story-grid img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-l); }
+    figure { margin: 0; }
+    figcaption { margin-top: var(--space-xs); font-size: var(--text-small); color: var(--color-text-muted); }
+    .stats { list-style: none; margin: var(--space-l) 0 0; padding: var(--space-m) 0 0; border-top: 1px solid var(--color-border); display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-m); }
+    .stats strong { display: block; font-family: var(--font-heading); font-weight: 400; font-size: 2.5rem; line-height: 1; color: var(--color-primary); }
+    .stats span { font-size: var(--text-small); color: var(--color-text-muted); }
+    .partners { margin-top: var(--space-xl); display: grid; gap: var(--space-l); align-items: center; }
+    .partners ul { margin: var(--space-s) 0 0; padding-left: 1.2em; }
+    .partners img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-l); }
+    @media (min-width: 900px) {
+      .story-grid { grid-template-columns: 1.2fr 1fr; gap: var(--space-xl); }
+      .stats { grid-template-columns: repeat(4, 1fr); }
+      .partners { grid-template-columns: 1fr 1.2fr; gap: var(--space-xl); }
+    }
+
+    /* ── KKK ──────────────────────────────────────────────────── */
+    .faq { max-width: 820px; }
+    .faq details { border-bottom: 1px solid var(--color-border); }
+    .faq details:first-of-type { border-top: 1px solid var(--color-border); }
+    .faq summary {
+      list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-s);
+      padding: var(--space-m) 0; font-weight: var(--weight-semibold); color: var(--color-primary); font-size: 1.1875rem; line-height: 1.4;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; flex-shrink: 0; font-size: 1.75rem; font-weight: 400; line-height: 1; color: var(--color-accent); transition: transform .2s; }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq .answer { padding: 0 0 var(--space-m); }
+
+    /* ── Osalejate lood ───────────────────────────────────────── */
+    .story-card { display: grid; gap: var(--space-l); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-l); padding: var(--space-m); box-shadow: var(--shadow-card); }
+    .story-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-m); }
+    .story-card blockquote { margin: 0; }
+    .story-card .quote { font-family: var(--font-heading); font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.2; color: var(--color-primary); }
+    @media (min-width: 900px) { .story-card { grid-template-columns: 1fr 1fr; padding: var(--space-l); align-items: center; } }
+
+    /* ── Asukoht ja kontakt ───────────────────────────────────── */
+    .two-col { display: grid; gap: var(--space-l); }
+    @media (min-width: 900px) { .two-col { grid-template-columns: 1fr 1fr; gap: var(--space-xl); } }
+    .info-box { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-l); padding: var(--space-m); }
+    .info-box h3 { margin-bottom: var(--space-s); }
+    address { font-style: normal; }
+    .contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-s); }
+    .contact-list li { display: flex; gap: var(--space-s); align-items: flex-start; }
+    .contact-list svg { width: 24px; height: 24px; color: var(--color-accent); flex-shrink: 0; margin-top: 3px; }
+    .contact-list a { font-weight: var(--weight-semibold); }
+    .steps { margin: 0; padding-left: 1.4em; }
+    .steps li { margin-bottom: var(--space-xs); padding-left: var(--space-2xs); }
+
+    /* ── Jalus ────────────────────────────────────────────────── */
+    .site-footer { background: var(--color-primary); color: var(--color-text-on-dark); padding: var(--space-xl) 0 var(--space-l); font-size: var(--text-small); line-height: var(--leading-small); }
+    .site-footer a { color: var(--color-text-on-dark); }
+    .site-footer a:hover { color: var(--color-accent-on-dark); }
+    .site-footer :focus-visible { outline-color: var(--color-accent-on-dark); }
+    .footer-grid { display: grid; gap: var(--space-l); }
+    .footer-brand { font-family: var(--font-body); font-weight: var(--weight-semibold); font-size: 1.5rem; line-height: 1.05; letter-spacing: -0.01em; }
+    .footer-brand span { display: block; padding-left: 1.2em; }
+    .footer-title { font-weight: var(--weight-semibold); margin: 0 0 var(--space-xs); color: var(--color-accent-on-dark); }
+    .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-xs); }
+    .footer-bottom { margin-top: var(--space-l); padding-top: var(--space-m); border-top: 1px solid rgba(250, 246, 239, 0.25); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-s); }
+    @media (min-width: 900px) { .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1.3fr; } }
+
+    /* ── Kleepuv broneerimisnupp (mobiil) ─────────────────────── */
+    .sticky-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      padding: var(--space-s) var(--space-m) calc(var(--space-s) + env(safe-area-inset-bottom));
+      background: var(--color-bg); border-top: 1px solid var(--color-border);
+      box-shadow: 0 -6px 20px rgba(42, 38, 33, 0.08);
+    }
+    .sticky-cta .btn { width: 100%; }
+    @media (min-width: 900px) { .sticky-cta { display: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#sisu">Liigu sisu juurde</a>
+
+  <!-- ═══ PÄIS ═══ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="./" aria-label="Kungla Koolitused, avalehele">
+        <img src="kungla-koolitused-logo.svg" alt="Kungla Koolitused" width="120" height="44">
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Ava menüü" aria-expanded="false" aria-controls="peamenuu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        Menüü
+      </button>
+
+      <nav class="site-nav" id="peamenuu" aria-label="Peamenüü">
+        <ul>
+          <li><a href="#koolitused">Koolitused</a></li>
+          <li><a href="#meie-lugu">Meie lugu</a></li>
+          <li><a href="#kkk">KKK</a></li>
+          <li><a href="#asukoht">Asukoht</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn--primary btn--small header-cta" href="#jargmine">Vali koolitus</a>
+    </div>
+  </header>
+
+  <main id="sisu">
+
+    <!-- ═══ AVAPLOKK ═══ -->
+    <section class="hero" aria-labelledby="avapealkiri">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Digioskuste koolitused täiskasvanutele · Kuressaare</span>
+          <h1 id="avapealkiri">Koolitused Saaremaal: proovi tehisaru <em>omal käel</em></h1>
+          <p class="lead">Kungla Koolitused on Kuressaares toimuvad praktilised töötoad, kus õpid tehisaru, kodulehtede ja disaini tegemist päriselt kasutama. Suur osa koolitustest on riigi toel sulle tasuta. Varasemat kogemust pole vaja. Tule oma küsimustega, õpime koos.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="https://fienta.com/et/kuressaare-turvaline-tehisaru-kasutus-riskide-maandamine">Vali koolitus ja registreeru</a>
+            <a class="btn btn--secondary" href="#kontakt">Telli koolitus meeskonnale</a>
+          </div>
+          <ul class="hero-facts">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Kohapeal Kuressaares</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Väikesed grupid</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Paljud koolitused tasuta</li>
+          </ul>
+        </div>
+
+        <div class="hero-media">
+          <!-- Avapilt ei ole lazy, sest see on kohe nähtav. Asenda width/height pildi tegelike mõõtudega. -->
+          <img src="images/Koolitus_TI_1.webp" alt="Osalejad Kungla tehisaru koolitusel Saaremaal" width="1200" height="800" fetchpriority="high">
+          <!-- Kujundimotiiv „Ühine lõke“ (dekoratiivne) -->
+          <svg class="motif" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+            <g fill="currentColor">
+              <circle cx="60" cy="14" r="5"/><circle cx="92.5" cy="27.5" r="5"/><circle cx="106" cy="60" r="5"/><circle cx="92.5" cy="92.5" r="5"/>
+              <circle cx="60" cy="106" r="5"/><circle cx="27.5" cy="92.5" r="5"/><circle cx="14" cy="60" r="5"/><circle cx="27.5" cy="27.5" r="5"/>
+            </g>
+            <circle cx="60" cy="60" r="16" fill="#F2BD8D"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ JÄRGMINE TÖÖTUBA ═══ -->
+    <section id="jargmine" aria-labelledby="jargmine-pealkiri">
+      <div class="container">
+        <div class="next on-dark">
+          <div>
+            <span class="eyebrow">Järgmine töötuba</span>
+            <h2 id="jargmine-pealkiri">Turvaline tehisaru kasutus: <em>riskide maandamine</em></h2>
+            <dl>
+              <!-- TÄIDA: lisa kuupäev ja kellaaeg, nt <div><dt>Aeg</dt><dd>reede, 20. november kell 10–13.15</dd></div> -->
+              <div><dt>Koht</dt><dd>TalTech Kuressaare Kolledž, Tallinna 19, Kuressaare</dd></div>
+              <div><dt>Registreerimine</dt><dd>Fienta lehel, kus on kirjas ka täpne aeg</dd></div>
+            </dl>
+          </div>
+          <div>
+            <div class="btn-row">
+              <a class="btn btn--on-dark" href="https://fienta.com/et/kuressaare-turvaline-tehisaru-kasutus-riskide-maandamine">Registreeru töötuppa</a>
+            </div>
+            <p class="small" style="margin-top: var(--space-s);">Uued koolitused avaldame 2–4 nädalat enne algust. <a href="#uudiskiri">Anname sulle teada.</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ KOOLITUSED (TOOTED) ═══ -->
+    <section class="section" id="koolitused" aria-labelledby="koolitused-pealkiri">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Koolitused</span>
+          <h2 id="koolitused-pealkiri">Vali, kuidas tahad <em>õppida</em></h2>
+          <p>Kõik koolitused toimuvad kohapeal Saaremaal. Teooria ja praktika käivad käsikäes: kõigepealt näitame, siis teed ise.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h20v14H2z"/><path d="M8 21h8M12 17v4"/></svg>
+            <span class="tag tag--free">Tasuta</span>
+            <h3>Töötuba</h3>
+            <p class="card-meta">4 akadeemilist tundi · avalik</p>
+            <p>Lühike ja praktiline kohtumine ühe teemaga. Hea viis tehisaru esimest korda omal käel proovida.</p>
+            <a class="card-link" href="#jargmine">Vaata järgmist töötuba</a>
+          </article>
+
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg>
+            <span class="tag tag--free">Tasuta (RKT)</span>
+            <h3>Pikem koolitus</h3>
+            <p class="card-meta">Tavaliselt 40–50 akadeemilist tundi</p>
+            <p>Töötubade nädal, mille lõpuks valmib sul midagi päris oma, näiteks koduleht. Tunnistus jõuab Haridusportaali.</p>
+            <a class="card-link" href="#kkk-tasuta">Kuidas osaleda</a>
+          </article>
+
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M16 3.1a4 4 0 0 1 0 7.8M22 21v-2a4 4 0 0 0-3-3.9"/></svg>
+            <span class="tag tag--quote">Päringu alusel</span>
+            <h3>Koolituspäev meeskonnale</h3>
+            <p class="card-meta">8 akadeemilist tundi · sinu meeskonnale</p>
+            <p>Sisekoolitus ettevõttele või asutusele. Paneme kava kokku teie igapäevatöö järgi.</p>
+            <a class="card-link" href="#kontakt">Küsi pakkumist</a>
+          </article>
+
+          <article class="card">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span class="tag tag--quote">Päringu alusel</span>
+            <h3>Individuaalne konsultatsioon</h3>
+            <p class="card-meta">Maht kokkuleppel</p>
+            <p>Üks-ühele abi sinu enda tööga: kodulehe, tekstide või tehisaru kasutamisega.</p>
+            <a class="card-link" href="#kontakt">Võta ühendust</a>
+          </article>
+        </div>
+
+        <ul class="topics" aria-label="Koolituste teemad">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+            <div><h3>Tehisaru</h3><p>ChatGPT, Claude ja Gemini igapäevatöös. Õpid kirjutama prompte ehk selgeid juhiseid tehisarule.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <div><h3>Kodulehed</h3><p>WordPress koos tehisaruga. Teed oma kodulehe nullist valmis ja saad aru, kuidas see Google'is leitavaks teha.</p></div>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 0 0 0 20c1 0 1.7-.8 1.7-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.8-1.7 1.7-1.7H16a6 6 0 0 0 6-6c0-4.9-4.5-8.4-10-8.4z"/></svg>
+            <div><h3>Disain</h3><p>Kujundamise alused, millega saad ise teha plakati, sotsiaalmeedia pildi või trükise.</p></div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══ MEIE LUGU ═══ -->
+    <section class="section section--alt" id="meie-lugu" aria-labelledby="lugu-pealkiri">
+      <div class="container">
+        <div class="story-grid">
+          <div>
+            <span class="eyebrow">Meie lugu</span>
+            <h2 id="lugu-pealkiri">Õpime koos, nagu <em>ühise lõkke</em> ääres</h2>
+            <p style="margin-top: var(--space-m);">Kungla on Kalevipoja muinasjutuline riik. Meie Kungla on palju väiksem: üks laud, mille ümber saavad kokku inimesed, kes tahavad uusi oskusi proovida. Tehnoloogia on siin tööriist, inimene on keskmes.</p>
+            <p>Koolitaja <strong>Kristjan Kesküla</strong> on graafiline disainer ja veebiarendaja, kes on koolitanud täiskasvanuid Saaremaal alates 2020. aastast. Disaineri ja arendajana on ta teinud tööd ka Bolti, TV3 Play, DSV, SRC Groupi, TalTechi ja riigiasutuste jaoks. Ta õpetab neid tööriistu, mida kasutab ise iga päev.</p>
+            <p>Kristjan on lõpetanud Eesti Kunstiakadeemia graafilise disaini erialal ja õpib TalTechi ja EKA ühises magistriõppes „Strateegiline disain ja tehnoloogia“.</p>
+            <!-- TÄIDA: Kristjani portree (4:5) ja paar lauset „miks ma koolitan“ -->
+
+            <ul class="stats">
+              <li><strong>2020</strong><span>koolitame alates</span></li>
+              <li><strong>4–50</strong><span>akadeemilist tundi koolituse kohta</span></li>
+              <li><strong>3 kuud</strong><span>on materjalid pärast koolitust alles</span></li>
+              <li><strong>0 €</strong><span>riigi rahastatud koolitustel osalejale</span></li>
+            </ul>
+          </div>
+
+          <figure>
+            <img src="images/Koolitus_Graafiline-disain_2026.jpeg" alt="Graafilise disaini koolituse osalejad hoiavad käes oma kujundatud T-särke" width="1200" height="900" loading="lazy" decoding="async">
+            <figcaption>Graafilise disaini koolituse lõpuks oli igaühel käes ise kujundatud särk.</figcaption>
+          </figure>
+        </div>
+
+        <div class="partners">
+          <figure>
+            <img src="images/Loovkood_SG.webp" alt="Loovkoodi koolitus Saaremaa Gümnaasiumis" width="1200" height="900" loading="lazy" decoding="async">
+            <figcaption>Loovkoodi koolitus Saaremaa Gümnaasiumis.</figcaption>
+          </figure>
+          <div>
+            <h3>Kus oleme koolitanud</h3>
+            <p style="margin-top: var(--space-xs);">Koolitused toimuvad koostöös kohalike koolidega ja riiklike programmide kaudu.</p>
+            <!-- Partnerite logod lisa siis, kui nende kasutamiseks on luba olemas. -->
+            <ul>
+              <li>Kuressaare Ametikool (Koolitusmajakas)</li>
+              <li>TalTech Kuressaare Kolledž</li>
+              <li>Saaremaa Gümnaasium</li>
+              <li>RKT täienduskoolitused (Haridus- ja Teadusministeerium)</li>
+              <li>Eesti.Ai töötoad (Riigikantselei)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ KKK ═══ -->
+    <section class="section" id="kkk" aria-labelledby="kkk-pealkiri">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">KKK</span>
+          <h2 id="kkk-pealkiri">Korduma kippuvad küsimused</h2>
+        </div>
+
+        <div class="faq">
+          <details id="kkk-tasuta">
+            <summary>Kas koolitus on tasuta?</summary>
+            <div class="answer"><p>Avalikud töötoad ning RKT ja Eesti.Ai koolitused on osalejale tasuta, sest neid rahastab riik. Sisekoolituste ja konsultatsioonide hind on päringu alusel.</p></div>
+          </details>
+          <details>
+            <summary>Kuidas ma registreerun?</summary>
+            <div class="answer"><p>Registreerimise link on iga koolituse juures. Järgmisele töötoale registreerud <a href="https://fienta.com/et/kuressaare-turvaline-tehisaru-kasutus-riskide-maandamine">Fienta lehel</a>. RKT koolitustele registreerud Haridusportaalis või Kuressaare Ametikooli kodulehel.</p></div>
+          </details>
+          <details>
+            <summary>Kas ma saan hakkama, kui ma pole arvutiga eriti osav?</summary>
+            <div class="answer"><p>Jah. Koolitused on üles ehitatud nii, et neid on lihtne kaasa teha. Sul on kasutada valmis näidispromptid ning küsimustele vastame kohapeal jooksvalt. Tempo on rahulik.</p></div>
+          </details>
+          <details>
+            <summary>Kas mul on vaja tasulist tehisaru tellimust?</summary>
+            <div class="answer"><p>See on tungivalt soovitatav. Tasuta versiooniga on raskem kaasa teha, vastused on nõrgemad ja kasutuslimiit võib töö pooleli jätta.</p></div>
+          </details>
+          <details>
+            <summary>Mida pean enne koolitust ette valmistama?</summary>
+            <div class="answer"><p>Laadi oma arvutisse alla ChatGPT, Claude'i või Gemini töölauarakendus. Siis jääb üle vaid kohale tulla.</p></div>
+          </details>
+          <details>
+            <summary>Kas saame kahekesi ühes arvutis töötada?</summary>
+            <div class="answer"><p>Jah, kui teete sarnast tööd.</p></div>
+          </details>
+          <details>
+            <summary>Kas materjale jagatakse ja kui kauaks?</summary>
+            <div class="answer"><p>Jah. Kõik materjalid on veebilehe kujul ja lingiga lihtsasti kättesaadavad. Need jäävad üles vähemalt 3 kuuks pärast koolitust.</p></div>
+          </details>
+          <details>
+            <summary>Kas ma saan tunnistuse?</summary>
+            <div class="answer"><p>Riigi rahastatud koolitustel jõuab tunnistus ametlikult Haridusportaali sinu isikukoodi alusel. See väljastatakse tulemuse põhjal: koolituse lõpuks valmib sul midagi päriselt.</p></div>
+          </details>
+          <details>
+            <summary>Kus koolitused toimuvad?</summary>
+            <div class="answer"><p>Kohapeal Saaremaal ja koht sõltub üritusest. Lähimad töötoad toimuvad TalTech Kuressaare Kolledžis. Täpne koht on kirjas iga koolituse juures.</p></div>
+          </details>
+          <details>
+            <summary>Kuidas tellida koolitus oma ettevõttele?</summary>
+            <div class="answer"><p>Kirjuta meile aadressil <a href="mailto:info@kunglakoolitused.ee">info@kunglakoolitused.ee</a>. Pakume 8 akadeemilise tunni pikkust koolituspäeva meeskonnale ja individuaalset konsultatsiooni ning teeme pakkumise teie vajaduse järgi.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ OSALEJATE LOOD (ARVUSTUSED) ═══ -->
+    <section class="section section--alt" id="osalejad" aria-labelledby="osalejad-pealkiri">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Osalejate lood</span>
+          <h2 id="osalejad-pealkiri">Mis koolitusel <em>päriselt</em> valmib</h2>
+        </div>
+
+        <article class="story-card">
+          <img src="images/Koolitus_TI_1.webp" alt="Tehisaru koolituse osalejad Saaremaal" width="1200" height="800" loading="lazy" decoding="async">
+          <div>
+            <blockquote>
+              <p class="quote">Nullist tehtud koduleht, mis toob tulemusi Google'ist.</p>
+            </blockquote>
+            <p style="margin-top: var(--space-m);">Meeleolutalu looja tegi kodulehekoolitusel oma talule kodulehe algusest lõpuni ise. Täna leiavad kliendid selle üles Google'i otsingust.</p>
+            <p><a href="https://meeleolutalu.ee/" rel="noopener">Vaata lehte meeleolutalu.ee</a></p>
+          </div>
+        </article>
+
+        <!--
+          TÄIDA: osalejate tagasiside tsitaadid, kui avaldamiseks on luba.
+          Näidismall (ära avalda väljamõeldud tsitaate):
+          <figure class="info-box">
+            <blockquote><p>„Osaleja enda sõnad.“</p></blockquote>
+            <figcaption>Eesnimi või initsiaalid, koolituse nimi ja aasta</figcaption>
+          </figure>
+        -->
+      </div>
+    </section>
+
+    <!-- ═══ ASUKOHT JA KOHALEJÕUDMINE ═══ -->
+    <section class="section" id="asukoht" aria-labelledby="asukoht-pealkiri">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">Asukoht</span>
+          <h2 id="asukoht-pealkiri">Kuidas kohale jõuda</h2>
+          <p style="margin-top: var(--space-m);">Järgmised kolm töötuba toimuvad <strong>TalTech Kuressaare Kolledži auditooriumis</strong>. Teiste koolituste koht on kirjas iga koolituse juures.</p>
+          <ol class="steps">
+            <li>Tule Kuressaares aadressile Tallinna 19.</li>
+            <li>Sisene kolledži peauksest.</li>
+            <li>Täpne ruum on kirjas registreerimislehel. Kui eksid ära, helista: <a href="tel:+37253735449">5373 5449</a>.</li>
+          </ol>
+        </div>
+        <div class="info-box">
+          <h3>TalTech Kuressaare Kolledž</h3>
+          <address>Tallinna 19<br>93811 Kuressaare, Saaremaa</address>
+          <div class="btn-row">
+            <a class="btn btn--secondary" href="https://www.google.com/maps/search/?api=1&amp;query=TalTech+Kuressaare+Kolled%C5%BE+Tallinna+19+Kuressaare" rel="noopener">Ava kaardil</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ KONTAKT ═══ -->
+    <section class="section section--alt" id="kontakt" aria-labelledby="kontakt-pealkiri">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">Kontakt</span>
+          <h2 id="kontakt-pealkiri">Kirjuta või helista, <em>vastame</em> rõõmuga</h2>
+          <p style="margin-top: var(--space-m);">Tahad koolitust oma meeskonnale või on küsimus enne registreerimist? Kirjuta paari lausega, mida vajad, ja teeme ettepaneku.</p>
+          <ul class="contact-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+              <div><span class="visually-hidden">E-post: </span><a href="mailto:info@kunglakoolitused.ee">info@kunglakoolitused.ee</a></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+              <div><span class="visually-hidden">Telefon: </span><a href="tel:+37253735449">+372 5373 5449</a></div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <address><span class="visually-hidden">Aadress: </span>Kungla 6-1, 93814 Kuressaare, Saaremaa</address>
+            </li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="mailto:info@kunglakoolitused.ee?subject=Koolituse%20p%C3%A4ring%20meeskonnale">Küsi pakkumist meeskonnale</a>
+          </div>
+        </div>
+
+        <div class="info-box" id="uudiskiri">
+          <h3>Anname teada uutest koolitustest</h3>
+          <p>Uued koolitused avaldame 2–4 nädalat enne algust ja kohti on vähe. Kirjuta meile ja anname sulle teada enne järgmist töötuba.</p>
+          <!-- Kui uudiskirja tööriist (nt MailerLite või Brevo) on valitud, asenda see nupp tööriista vormiga. -->
+          <div class="btn-row">
+            <a class="btn btn--secondary" href="mailto:info@kunglakoolitused.ee?subject=Anna%20teada%20uutest%20koolitustest&amp;body=Tere!%20Palun%20andke%20mulle%20teada%2C%20kui%20avaldate%20uue%20koolituse.">Anna mulle teada</a>
+          </div>
+          <p class="small muted" style="margin-top: var(--space-s);">Kasutame su e-posti ainult koolitustest teatamiseks. Loe <a href="andmekaitse.html">andmekaitsetingimusi</a>.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ JALUS ═══ -->
+  <footer class="site-footer on-dark">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand" aria-label="Kungla Koolitused">kungla<span>koolitused</span></p>
+          <p style="margin-top: var(--space-s);">Digioskuste koolitused täiskasvanutele Saaremaal. Õpime koos.</p>
+        </div>
+        <div>
+          <p class="footer-title">Leht</p>
+          <ul>
+            <li><a href="#koolitused">Koolitused</a></li>
+            <li><a href="#meie-lugu">Meie lugu</a></li>
+            <li><a href="#kkk">KKK</a></li>
+            <li><a href="#asukoht">Asukoht</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-title">Kontakt</p>
+          <ul>
+            <li><a href="mailto:info@kunglakoolitused.ee">info@kunglakoolitused.ee</a></li>
+            <li><a href="tel:+37253735449">+372 5373 5449</a></li>
+            <li>Kungla 6-1, 93814 Kuressaare</li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-title">Järgmine töötuba</p>
+          <p>Uued koolitused avaldame 2–4 nädalat ette.</p>
+          <div class="btn-row" style="margin-top: var(--space-s);">
+            <a class="btn btn--on-dark btn--small" href="https://fienta.com/et/kuressaare-turvaline-tehisaru-kasutus-riskide-maandamine">Vali koolitus</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <!-- TÄIDA: juriidiline nimi ja registrikood, nt „Ettevõte OÜ, reg. 12345678“ -->
+        <p>© 2026 Kungla Koolitused</p>
+        <p><a href="andmekaitse.html">Andmekaitsetingimused</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Kleepuv broneerimisnupp (ainult mobiilis) -->
+  <div class="sticky-cta">
+    <a class="btn btn--primary" href="https://fienta.com/et/kuressaare-turvaline-tehisaru-kasutus-riskide-maandamine">Vali koolitus ja registreeru</a>
+  </div>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector('.nav-toggle');
+      var nav = document.getElementById('peamenuu');
+      if (!toggle || !nav) return;
+
+      function setOpen(open) {
+        nav.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+        toggle.setAttribute('aria-label', open ? 'Sulge menüü' : 'Ava menüü');
+      }
+
+      toggle.addEventListener('click', function () {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setOpen(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
